@@ -1,0 +1,61 @@
+{
+	"Demo": {
+		"methods": [
+			"TEST_Chat",
+			"TEST_Worker"
+		],
+		"forms": [
+			"Chat"
+		]
+	},
+	"ORDA": {
+		"tables": [
+			"Access",
+			"Post",
+			"Room",
+			"User"
+		],
+		"classes": [
+			"Access",
+			"Post",
+			"Room",
+			"User"
+		]
+	},
+	"Prototype": {
+		"classes": [
+			"_Connection",
+			"_Error",
+			"_Message",
+			"_Open",
+			"_Terminate"
+		]
+	},
+	"View": {
+		"classes": [
+			"_ChatForm",
+			"_Form"
+		]
+	},
+	"Web Socket Connection": {
+		"classes": [
+			"_WSS_Connection",
+			"Chat_WSS_Connection",
+			"ChatUI_WSS_Connection"
+		]
+	},
+	"Web Socket Controller": {
+		"classes": [
+			"_WSS_Controller",
+			"Chat_WSS_Controller",
+			"ChatUI_WSS_Controller"
+		]
+	},
+	"Web Socket Server": {
+		"classes": [
+			"_WSS",
+			"Chat"
+		]
+	},
+	"trash": {}
+}

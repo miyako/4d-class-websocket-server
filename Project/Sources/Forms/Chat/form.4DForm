@@ -1,0 +1,421 @@
+{
+	"$4d": {
+		"version": "1",
+		"kind": "form"
+	},
+	"windowSizingX": "variable",
+	"windowSizingY": "variable",
+	"windowMinWidth": 440,
+	"windowMinHeight": 440,
+	"windowMaxWidth": 32767,
+	"windowMaxHeight": 32767,
+	"events": [
+		"onLoad",
+		"onUnload",
+		"onPageChange"
+	],
+	"windowTitle": "",
+	"destination": "detailScreen",
+	"pages": [
+		{
+			"objects": {
+				"pages": {
+					"type": "tab",
+					"text": "Tab control",
+					"top": 5,
+					"left": 10,
+					"width": 510,
+					"height": 425,
+					"right": 520,
+					"sizingX": "grow",
+					"sizingY": "grow",
+					"labelsPlacement": "top",
+					"dataSourceTypeHint": "object",
+					"dataSource": "Form:C1466.pages",
+					"action": "gotoPage",
+					"bottom": 430
+				},
+				"rooms": {
+					"type": "listbox",
+					"left": 20,
+					"top": 40,
+					"width": 150,
+					"height": 380,
+					"events": [
+						"onClick",
+						"onDoubleClick"
+					],
+					"listboxType": "collection",
+					"showHeaders": false,
+					"rowHeight": "40px",
+					"resizingMode": "legacy",
+					"focusable": true,
+					"sortable": false,
+					"selectionMode": "single",
+					"horizontalLineStroke": "transparent",
+					"verticalLineStroke": "transparent",
+					"sizingY": "grow",
+					"scrollbarHorizontal": "hidden",
+					"scrollbarVertical": "hidden",
+					"dataSource": "Form:C1466.rooms",
+					"textAlign": "left",
+					"verticalAlign": "middle",
+					"fontWeight": "bold",
+					"borderStyle": "none",
+					"method": "ObjectMethods/rooms.4dm",
+					"horizontalPadding": 10,
+					"alternateFill": "automaticAlternate",
+					"currentItemSource": "Form:C1466.currentRoom",
+					"currentItemPositionSource": "Form:C1466.currentRoomPosition",
+					"columns": [
+						{
+							"header": {
+								"text": "",
+								"name": "rooms.name.hdr"
+							},
+							"name": "rooms.name",
+							"footer": {
+								"name": "rooms.name.ftr",
+								"truncateMode": "none",
+								"fontWeight": "normal"
+							},
+							"resizable": false,
+							"enterable": false,
+							"truncateMode": "none",
+							"dataSource": "This:C1470.name"
+						}
+					]
+				}
+			}
+		},
+		{
+			"objects": {
+				"access": {
+					"type": "listbox",
+					"left": 180,
+					"top": 40,
+					"width": 330,
+					"height": 380,
+					"events": [
+						"onClick",
+						"onDoubleClick"
+					],
+					"listboxType": "collection",
+					"showHeaders": false,
+					"rowHeight": "1em",
+					"resizingMode": "legacy",
+					"focusable": false,
+					"sortable": false,
+					"selectionMode": "none",
+					"horizontalLineStroke": "transparent",
+					"verticalLineStroke": "transparent",
+					"sizingY": "grow",
+					"scrollbarHorizontal": "hidden",
+					"scrollbarVertical": "hidden",
+					"dataSource": "Form:C1466.currentRoom.access.orderBy(\"timestamp desc\")",
+					"textAlign": "left",
+					"verticalAlign": "middle",
+					"fontWeight": "bold",
+					"borderStyle": "none",
+					"horizontalPadding": 10,
+					"alternateFill": "automaticAlternate",
+					"currentItemSource": "",
+					"sizingX": "grow",
+					"columns": [
+						{
+							"header": {
+								"name": "access.user.remoteAddress.hdr",
+								"text": "Header3",
+								"fontWeight": "normal"
+							},
+							"name": "access.user.remoteAddress",
+							"enterable": false,
+							"resizable": false,
+							"dataSource": "This:C1470.user.remoteAddress",
+							"footer": {
+								"name": "access.user.remoteAddress.ftr",
+								"truncateMode": "none",
+								"fontWeight": "normal"
+							},
+							"width": 160
+						},
+						{
+							"header": {
+								"text": "",
+								"name": "access.kind.hdr",
+								"fontWeight": "normal"
+							},
+							"name": "access.kind",
+							"footer": {
+								"name": "access.kind.ftr",
+								"truncateMode": "none",
+								"fontWeight": "normal"
+							},
+							"resizable": false,
+							"enterable": false,
+							"truncateMode": "none",
+							"dataSource": "This:C1470.kind",
+							"fontWeight": "normal"
+						}
+					]
+				},
+				"terminate.other": {
+					"type": "button",
+					"text": "terminate the current handler",
+					"top": 40,
+					"left": 60,
+					"width": 210,
+					"height": 21,
+					"events": [
+						"onClick"
+					],
+					"focusable": false,
+					"method": "ObjectMethods/terminate.other.4dm",
+					"visibility": "hidden"
+				},
+				"warning": {
+					"type": "text",
+					"text": "すでに他のワーカーまたはダイアログがWebSocketServerを実行しています。",
+					"top": 103,
+					"left": 33,
+					"width": 467,
+					"height": 31,
+					"visibility": "hidden"
+				}
+			}
+		},
+		{
+			"objects": {
+				"posts": {
+					"type": "listbox",
+					"left": 180,
+					"top": 40,
+					"width": 330,
+					"height": 380,
+					"events": [
+						"onClick",
+						"onDoubleClick"
+					],
+					"listboxType": "collection",
+					"showHeaders": false,
+					"rowHeight": "1em",
+					"resizingMode": "legacy",
+					"focusable": false,
+					"sortable": false,
+					"selectionMode": "none",
+					"horizontalLineStroke": "transparent",
+					"verticalLineStroke": "transparent",
+					"sizingY": "grow",
+					"scrollbarHorizontal": "hidden",
+					"scrollbarVertical": "hidden",
+					"dataSource": "Form:C1466.currentRoom.posts.orderBy(\"timestamp desc\")",
+					"textAlign": "left",
+					"verticalAlign": "middle",
+					"fontWeight": "bold",
+					"borderStyle": "none",
+					"horizontalPadding": 10,
+					"alternateFill": "automaticAlternate",
+					"currentItemSource": "",
+					"sizingX": "grow",
+					"columns": [
+						{
+							"header": {
+								"name": "Header3",
+								"text": "Header3"
+							},
+							"name": "Column3",
+							"enterable": false,
+							"resizable": false,
+							"dataSource": "This:C1470.user.remoteAddress",
+							"footer": {
+								"name": "Footer3"
+							},
+							"width": 160
+						},
+						{
+							"header": {
+								"text": "Header1",
+								"name": "Header2"
+							},
+							"name": "Column2",
+							"footer": {
+								"name": "Footer2"
+							},
+							"resizable": false,
+							"enterable": false,
+							"truncateMode": "none",
+							"dataSource": "This:C1470.message",
+							"fontWeight": "normal"
+						}
+					]
+				}
+			}
+		},
+		{
+			"objects": {
+				"Chat.stream": {
+					"type": "input",
+					"left": 300,
+					"top": 130,
+					"width": 220,
+					"height": 297,
+					"dataSourceTypeHint": "object",
+					"enterable": false,
+					"dataSource": "Form:C1466.Chat.stream",
+					"focusable": false,
+					"contextMenu": "none",
+					"fill": "transparent",
+					"dragging": "none",
+					"dropping": "none",
+					"borderStyle": "none",
+					"right": 520,
+					"sizingX": "grow",
+					"sizingY": "grow"
+				},
+				"terminate": {
+					"type": "button",
+					"text": "terminate",
+					"top": 40,
+					"left": 180,
+					"width": 90,
+					"height": 21,
+					"events": [
+						"onClick"
+					],
+					"focusable": false,
+					"method": "ObjectMethods/terminate.4dm"
+				},
+				"restart": {
+					"type": "button",
+					"text": "restart",
+					"top": 40,
+					"left": 280,
+					"width": 90,
+					"height": 21,
+					"events": [
+						"onClick"
+					],
+					"focusable": false,
+					"method": "ObjectMethods/restart.4dm"
+				},
+				"remoteAddress": {
+					"type": "input",
+					"left": 300,
+					"top": 70,
+					"width": 210,
+					"height": 17,
+					"dataSourceTypeHint": "object",
+					"enterable": false,
+					"dataSource": "Form:C1466.Chat.connection.remoteAddress",
+					"focusable": false,
+					"contextMenu": "none",
+					"fill": "transparent",
+					"dragging": "none",
+					"dropping": "none",
+					"borderStyle": "none",
+					"right": 510,
+					"sizingX": "fixed",
+					"sizingY": "fixed"
+				},
+				"url": {
+					"type": "input",
+					"left": 300,
+					"top": 90,
+					"width": 210,
+					"height": 17,
+					"dataSourceTypeHint": "object",
+					"enterable": false,
+					"dataSource": "Form:C1466.Chat.connection.url",
+					"focusable": false,
+					"contextMenu": "none",
+					"fill": "transparent",
+					"dragging": "none",
+					"dropping": "none",
+					"borderStyle": "none",
+					"right": 510,
+					"sizingX": "fixed",
+					"sizingY": "fixed"
+				},
+				"room": {
+					"type": "input",
+					"left": 300,
+					"top": 110,
+					"width": 210,
+					"height": 17,
+					"dataSourceTypeHint": "object",
+					"enterable": false,
+					"dataSource": "Form:C1466.Chat.connection.room",
+					"focusable": false,
+					"contextMenu": "none",
+					"fill": "transparent",
+					"dragging": "none",
+					"dropping": "none",
+					"borderStyle": "none",
+					"right": 510,
+					"sizingX": "fixed",
+					"sizingY": "fixed"
+				},
+				"Remote Address:": {
+					"type": "text",
+					"text": "Remote Address:",
+					"top": 70,
+					"left": 175,
+					"width": 122,
+					"height": 16,
+					"fontWeight": "bold",
+					"textAlign": "right"
+				},
+				"URL:": {
+					"type": "text",
+					"text": "URL:",
+					"top": 90,
+					"left": 175,
+					"width": 122,
+					"height": 16,
+					"fontWeight": "bold",
+					"textAlign": "right"
+				},
+				"Room:": {
+					"type": "text",
+					"text": "Room:",
+					"top": 110,
+					"left": 175,
+					"width": 122,
+					"height": 16,
+					"fontWeight": "bold",
+					"textAlign": "right"
+				},
+				"Stream:": {
+					"type": "text",
+					"text": "Stream:",
+					"top": 130,
+					"left": 175,
+					"width": 122,
+					"height": 16,
+					"fontWeight": "bold",
+					"textAlign": "right"
+				}
+			}
+		}
+	],
+	"geometryStamp": 473,
+	"menuBar": "Barre #1",
+	"method": "method.4dm",
+	"editor": {
+		"activeView": "View 1",
+		"defaultView": "View 1",
+		"views": {
+			"View 1": {},
+			"nornal": {
+				"visible": false,
+				"objects": [
+					"pages",
+					"rooms",
+					"access"
+				]
+			}
+		}
+	},
+	"width": 530,
+	"height": 440
+}

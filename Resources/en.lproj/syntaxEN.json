@@ -1,0 +1,620 @@
+{
+	"_method_": {},
+	"_Error": {
+		"errors": {
+			"Syntax": "errors : Collection"
+		},
+		"type": {
+			"Syntax": "type : Text"
+		}
+	},
+	"_Connection": {
+		"request": {
+			"Syntax": "request : Object"
+		},
+		"type": {
+			"Syntax": "type : Text"
+		}
+	},
+	"cs.Chat": {
+		"_WSS": {
+			"new()": {
+				"Syntax": "**.new**( *path* : Variant; *controller* : 4D.Class )",
+				"Params": [
+					[
+						"path",
+						"Variant",
+						"->"
+					],
+					[
+						"controller",
+						"4D.Class",
+						"->"
+					]
+				],
+				"Summary": ""
+			}
+		},
+		"_ChatForm": {
+			"new()": {
+				"Syntax": "**.new**( *channels* : Collection )",
+				"Params": [
+					[
+						"channels",
+						"Collection",
+						"->"
+					]
+				],
+				"Summary": ""
+			}
+		},
+		"_WSS_Connection": {
+			"new()": {
+				"Syntax": "**.new**()",
+				"Params": [],
+				"Summary": ""
+			}
+		},
+		"ChatUI_WSS_Controller": {
+			"new()": {
+				"Syntax": "**.new**()",
+				"Params": [],
+				"Summary": ""
+			}
+		},
+		"Chat": {
+			"new()": {
+				"Syntax": "**.new**( *controller* : cs.Chat._WSS_Controller )",
+				"Params": [
+					[
+						"controller",
+						"cs.Chat._WSS_Controller",
+						"->"
+					]
+				],
+				"Summary": ""
+			}
+		},
+		"_WSS_Controller": {
+			"new()": {
+				"Syntax": "**.new**()",
+				"Params": [],
+				"Summary": ""
+			}
+		},
+		"Chat_WSS_Controller": {
+			"new()": {
+				"Syntax": "**.new**()",
+				"Params": [],
+				"Summary": ""
+			}
+		},
+		"Chat_WSS_Connection": {
+			"new()": {
+				"Syntax": "**.new**( *connection* : cs.Chat._Connection )",
+				"Params": [
+					[
+						"connection",
+						"cs.Chat._Connection",
+						"->"
+					]
+				],
+				"Summary": ""
+			}
+		},
+		"_Form": {
+			"new()": {
+				"Syntax": "**.new**()",
+				"Params": [],
+				"Summary": ""
+			}
+		}
+	},
+	"_WSS": {
+		"semaphore()": {
+			"Syntax": "**.semaphore**( *path* : Text )->semaphore : Text",
+			"Params": [
+				[
+					"path",
+					"Text",
+					"->"
+				],
+				[
+					"semaphore",
+					"Text",
+					"<-"
+				]
+			],
+			"Summary": ""
+		},
+		"isRunning()": {
+			"Syntax": "**.isRunning**( *path* : Text )",
+			"Params": [
+				[
+					"path",
+					"Text",
+					"->"
+				]
+			],
+			"Summary": ""
+		},
+		"close()": {
+			"Syntax": "**.close**( *socket* : 4D.WebSocketServer )",
+			"Params": [
+				[
+					"socket",
+					"4D.WebSocketServer",
+					"->"
+				]
+			],
+			"Summary": ""
+		},
+		"terminate()": {
+			"Syntax": "**.terminate**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"open()": {
+			"Syntax": "**.open**( *socket* : 4D.WebSocketServer )->semahore : Boolean",
+			"Params": [
+				[
+					"socket",
+					"4D.WebSocketServer",
+					"->"
+				],
+				[
+					"semahore",
+					"Boolean",
+					"<-"
+				]
+			],
+			"Summary": ""
+		},
+		"requestTerminate()": {
+			"Syntax": "**.requestTerminate**( *path* : Text )",
+			"Params": [
+				[
+					"path",
+					"Text",
+					"->"
+				]
+			],
+			"Summary": ""
+		},
+		"controller": {
+			"Syntax": "controller : cs.Chat._WSS_Controller"
+		},
+		"socket": {
+			"Syntax": "socket : 4D.WebSocketServer"
+		}
+	},
+	"_Terminate": {
+		"code": {
+			"Syntax": "code : Integer"
+		},
+		"reason": {
+			"Syntax": "reason : Text"
+		},
+		"type": {
+			"Syntax": "type : Text"
+		}
+	},
+	"_ChatForm": {
+		"onTerminate()": {
+			"Syntax": "**.onTerminate**( *socket* : 4D.WebSocketConnection; *terminate* : cs.Chat._Terminate )",
+			"Params": [
+				[
+					"socket",
+					"4D.WebSocketConnection",
+					"->"
+				],
+				[
+					"terminate",
+					"cs.Chat._Terminate",
+					"->"
+				]
+			],
+			"Summary": ""
+		},
+		"onOpen()": {
+			"Syntax": "**.onOpen**( *socket* : 4D.WebSocketConnection; *open* : cs.Chat._Open )",
+			"Params": [
+				[
+					"socket",
+					"4D.WebSocketConnection",
+					"->"
+				],
+				[
+					"open",
+					"cs.Chat._Open",
+					"->"
+				]
+			],
+			"Summary": ""
+		},
+		"update()": {
+			"Syntax": "**.update**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"displayRoom()": {
+			"Syntax": "**.displayRoom**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"deactivate()": {
+			"Syntax": "**.deactivate**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"onMessage()": {
+			"Syntax": "**.onMessage**( *socket* : 4D.WebSocketConnection; *message* : cs.Chat._Message )",
+			"Params": [
+				[
+					"socket",
+					"4D.WebSocketConnection",
+					"->"
+				],
+				[
+					"message",
+					"cs.Chat._Message",
+					"->"
+				]
+			],
+			"Summary": ""
+		},
+		"onPageChange()": {
+			"Syntax": "**.onPageChange**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"onUnload()": {
+			"Syntax": "**.onUnload**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"restart()": {
+			"Syntax": "**.restart**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"terminate()": {
+			"Syntax": "**.terminate**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"requestTerminate()": {
+			"Syntax": "**.requestTerminate**( *path* : Text )",
+			"Params": [
+				[
+					"path",
+					"Text",
+					"->"
+				]
+			],
+			"Summary": ""
+		},
+		"onLoad()": {
+			"Syntax": "**.onLoad**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"_inheritedFrom_": "_Form"
+	},
+	"_Open": {
+		"type": {
+			"Syntax": "type : Text"
+		}
+	},
+	"_WSS_Connection": {
+		"onError()": {
+			"Syntax": "**.onError**( *socket* : 4D.WebSocketConnection; *error* : cs.Chat._Error )",
+			"Params": [
+				[
+					"socket",
+					"4D.WebSocketConnection",
+					"->"
+				],
+				[
+					"error",
+					"cs.Chat._Error",
+					"->"
+				]
+			],
+			"Summary": ""
+		},
+		"onTerminate()": {
+			"Syntax": "**.onTerminate**( *socket* : 4D.WebSocketConnection; *terminate* : cs.Chat._Terminate )",
+			"Params": [
+				[
+					"socket",
+					"4D.WebSocketConnection",
+					"->"
+				],
+				[
+					"terminate",
+					"cs.Chat._Terminate",
+					"->"
+				]
+			],
+			"Summary": ""
+		},
+		"onOpen()": {
+			"Syntax": "**.onOpen**( *socket* : 4D.WebSocketConnection; *open* : cs.Chat._Open )",
+			"Params": [
+				[
+					"socket",
+					"4D.WebSocketConnection",
+					"->"
+				],
+				[
+					"open",
+					"cs.Chat._Open",
+					"->"
+				]
+			],
+			"Summary": ""
+		},
+		"onMessage()": {
+			"Syntax": "**.onMessage**( *socket* : 4D.WebSocketConnection; *message* : cs.Chat._Message )",
+			"Params": [
+				[
+					"socket",
+					"4D.WebSocketConnection",
+					"->"
+				],
+				[
+					"message",
+					"cs.Chat._Message",
+					"->"
+				]
+			],
+			"Summary": ""
+		}
+	},
+	"_Message": {
+		"data": {
+			"Syntax": "data : Variant"
+		},
+		"type": {
+			"Syntax": "type : Text"
+		}
+	},
+	"ChatUI_WSS_Controller": {
+		"onTerminate()": {
+			"Syntax": "**.onTerminate**( *socket* : 4D.WebSocketServer; *terminate* : cs.Chat._Terminate )",
+			"Params": [
+				[
+					"socket",
+					"4D.WebSocketServer",
+					"->"
+				],
+				[
+					"terminate",
+					"cs.Chat._Terminate",
+					"->"
+				]
+			],
+			"Summary": ""
+		},
+		"onError()": {
+			"Syntax": "**.onError**( *socket* : 4D.WebSocketServer; *error* : cs.Chat._Error )",
+			"Params": [
+				[
+					"socket",
+					"4D.WebSocketServer",
+					"->"
+				],
+				[
+					"error",
+					"cs.Chat._Error",
+					"->"
+				]
+			],
+			"Summary": ""
+		},
+		"_inheritedFrom_": "Chat_WSS_Controller"
+	},
+	"Chat": {
+		"stream": {
+			"Syntax": "stream : Object"
+		},
+		"_inheritedFrom_": "_WSS"
+	},
+	"_WSS_Controller": {
+		"onError()": {
+			"Syntax": "**.onError**( *socket* : 4D.WebSocketServer; *message* : cs.Chat._Message )",
+			"Params": [
+				[
+					"socket",
+					"4D.WebSocketServer",
+					"->"
+				],
+				[
+					"message",
+					"cs.Chat._Message",
+					"->"
+				]
+			],
+			"Summary": ""
+		},
+		"onTerminate()": {
+			"Syntax": "**.onTerminate**( *socket* : 4D.WebSocketServer; *message* : cs.Chat._Message )",
+			"Params": [
+				[
+					"socket",
+					"4D.WebSocketServer",
+					"->"
+				],
+				[
+					"message",
+					"cs.Chat._Message",
+					"->"
+				]
+			],
+			"Summary": ""
+		},
+		"onOpen()": {
+			"Syntax": "**.onOpen**( *socket* : 4D.WebSocketServer; *message* : cs.Chat._Message )",
+			"Params": [
+				[
+					"socket",
+					"4D.WebSocketServer",
+					"->"
+				],
+				[
+					"message",
+					"cs.Chat._Message",
+					"->"
+				]
+			],
+			"Summary": ""
+		},
+		"onConnection()": {
+			"Syntax": "**.onConnection**( *socket* : 4D.WebSocketServer; *connection* : cs.Chat._Connection ) : cs.Chat._WSS_Connection",
+			"Params": [
+				[
+					"socket",
+					"4D.WebSocketServer",
+					"->"
+				],
+				[
+					"connection",
+					"cs.Chat._Connection",
+					"->"
+				],
+				[
+					"",
+					"cs.Chat._WSS_Connection",
+					"<-"
+				]
+			],
+			"Summary": ""
+		}
+	},
+	"Chat_WSS_Controller": {
+		"onConnection()": {
+			"Syntax": "**.onConnection**( *socket* : 4D.WebSocketServer; *connection* : cs.Chat._Connection )->object : Object",
+			"Params": [
+				[
+					"socket",
+					"4D.WebSocketServer",
+					"->"
+				],
+				[
+					"connection",
+					"cs.Chat._Connection",
+					"->"
+				],
+				[
+					"object",
+					"Object",
+					"<-"
+				]
+			],
+			"Summary": ""
+		},
+		"_inheritedFrom_": "_WSS_Controller"
+	},
+	"Chat_WSS_Connection": {
+		"formatMessage()": {
+			"Syntax": "**.formatMessage**( *message* : Text; *isAdmin* : Boolean )",
+			"Params": [
+				[
+					"message",
+					"Text",
+					"->"
+				],
+				[
+					"isAdmin",
+					"Boolean",
+					"->"
+				]
+			],
+			"Summary": ""
+		},
+		"onError()": {
+			"Syntax": "**.onError**( *socket* : 4D.WebSocketConnection; *error* : cs.Chat._Error )",
+			"Params": [
+				[
+					"socket",
+					"4D.WebSocketConnection",
+					"->"
+				],
+				[
+					"error",
+					"cs.Chat._Error",
+					"->"
+				]
+			],
+			"Summary": ""
+		},
+		"onTerminate()": {
+			"Syntax": "**.onTerminate**( *socket* : 4D.WebSocketConnection; *terminate* : cs.Chat._Terminate )",
+			"Params": [
+				[
+					"socket",
+					"4D.WebSocketConnection",
+					"->"
+				],
+				[
+					"terminate",
+					"cs.Chat._Terminate",
+					"->"
+				]
+			],
+			"Summary": ""
+		},
+		"onOpen()": {
+			"Syntax": "**.onOpen**( *socket* : 4D.WebSocketConnection; *open* : cs.Chat._Open )",
+			"Params": [
+				[
+					"socket",
+					"4D.WebSocketConnection",
+					"->"
+				],
+				[
+					"open",
+					"cs.Chat._Open",
+					"->"
+				]
+			],
+			"Summary": ""
+		},
+		"onMessage()": {
+			"Syntax": "**.onMessage**( *socket* : 4D.WebSocketConnection; *message* : cs.Chat._Message )",
+			"Params": [
+				[
+					"socket",
+					"4D.WebSocketConnection",
+					"->"
+				],
+				[
+					"message",
+					"cs.Chat._Message",
+					"->"
+				]
+			],
+			"Summary": ""
+		},
+		"url": {
+			"Syntax": "url : Text"
+		},
+		"remoteAddress": {
+			"Syntax": "remoteAddress : Text"
+		},
+		"_inheritedFrom_": "_WSS_Connection"
+	},
+	"_Form": {
+		"onUnload()": {
+			"Syntax": "**.onUnload**()",
+			"Params": [],
+			"Summary": ""
+		},
+		"onLoad()": {
+			"Syntax": "**.onLoad**()",
+			"Params": [],
+			"Summary": ""
+		}
+	}
+}

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE base SYSTEM "http://www.4d.com/dtd/2007/base.dtd" >
+<base name="websocket-server" uuid="9ACF99521B4C4170BDFEE2C2F7507855" collation_locale="ja">
+	<schema name="DEFAULT_SCHEMA"/>
+	<table name="Room" uuid="D2360EBBF10645FB9D96427AE0BD60E9" id="1">
+		<field name="Id" uuid="81C73A106D6949C5A6E5A1D58A33F8A9" type="4" unique="true" autosequence="true" not_null="true" id="1">
+			<field_extra visible="false"/>
+		</field>
+		<field name="name" uuid="233A87EC357041B19B7DE3F24DB77849" type="10" id="2"/>
+		<primary_key field_name="Id" field_uuid="81C73A106D6949C5A6E5A1D58A33F8A9"/>
+		<table_extra>
+			<editor_table_info displayable_fields_count="2">
+				<color red="168" green="206" blue="226" alpha="255"/>
+				<coordinates left="175.08203125" top="11.6953125" width="86" height="83.33203125"/>
+			</editor_table_info>
+		</table_extra>
+	</table>
+	<table name="Post" uuid="4211AC185459406796059B0B6973AF96" id="2">
+		<field name="Id" uuid="C21B2C6ABCE440FCB51814A343973B5A" type="4" unique="true" autosequence="true" not_null="true" id="1">
+			<field_extra visible="false"/>
+		</field>
+		<field name="roomId" uuid="329C25B8C9AD42A186C1BBAECF70E085" type="4" id="2">
+			<field_extra visible="false"/>
+		</field>
+		<field name="userId" uuid="DF9B824246E540238DCD604885A778FD" type="4" id="3">
+			<field_extra visible="false"/>
+		</field>
+		<field name="timestamp" uuid="3DF2DF2CD9FC4137AC25E6A980A4B7A6" type="10" limiting_length="24" id="4">
+			<field_extra visible="false"/>
+		</field>
+		<field name="message" uuid="4FF59828CCCA41BE91509DBC7780C561" type="10" id="5"/>
+		<primary_key field_name="Id" field_uuid="C21B2C6ABCE440FCB51814A343973B5A"/>
+		<table_extra>
+			<editor_table_info displayable_fields_count="5">
+				<color red="181" green="223" blue="149" alpha="255"/>
+				<coordinates left="422.69140625" top="158.6484375" width="114" height="146.33203125"/>
+			</editor_table_info>
+		</table_extra>
+	</table>
+	<table name="User" uuid="AF567ED3B6E542289D4007269E440DB2" id="3">
+		<field name="Id" uuid="3BC8BF81C38F409CBFECCCA0696DE65B" type="4" unique="true" autosequence="true" not_null="true" id="1">
+			<field_extra visible="false"/>
+		</field>
+		<field name="remoteAddress" uuid="28228A6910FF4C0DAD6ECE1F86041FD2" type="10" limiting_length="40" id="2"/>
+		<primary_key field_name="Id" field_uuid="3BC8BF81C38F409CBFECCCA0696DE65B"/>
+		<table_extra>
+			<editor_table_info displayable_fields_count="2">
+				<color red="237" green="211" blue="181" alpha="255"/>
+				<coordinates left="591.27734375" top="56.30859375" width="141" height="83.33203125"/>
+			</editor_table_info>
+		</table_extra>
+	</table>
+	<table name="Access" uuid="969E39E776A04A1DBC82CB4957F68583" id="4">
+		<field name="Id" uuid="E48E74866B514CACBE0E32B1BA4C73FD" type="4" unique="true" autosequence="true" not_null="true" id="1"/>
+		<field name="roomId" uuid="FEF9C5478B914631BA2C298BDA2E57A4" type="4" id="2">
+			<field_extra visible="false"/>
+		</field>
+		<field name="userId" uuid="FED749E74C474661BB8571F1F20622C3" type="4" id="3">
+			<field_extra visible="false"/>
+		</field>
+		<field name="timestamp" uuid="45629E8A02684F85B4E10D9E8DB1F10F" type="10" limiting_length="24" id="4"/>
+		<field name="kind" uuid="B74E239B261D4C6B9B85A2D70E1752C3" type="10" limiting_length="4" id="5"/>
+		<primary_key field_name="Id" field_uuid="E48E74866B514CACBE0E32B1BA4C73FD"/>
+		<table_extra>
+			<editor_table_info displayable_fields_count="5">
+				<color red="160" green="174" blue="158" alpha="255"/>
+				<coordinates left="0" top="145.43359375" width="114" height="146.33203125"/>
+			</editor_table_info>
+		</table_extra>
+	</table>
+	<relation uuid="AF6D1BDA9A1A4D40885D44FCFC1006CF" name_Nto1="room" name_1toN="posts" auto_load_Nto1="false" auto_load_1toN="false" foreign_key="false" state="1">
+		<related_field kind="source">
+			<field_ref uuid="329C25B8C9AD42A186C1BBAECF70E085" name="roomId">
+				<table_ref uuid="4211AC185459406796059B0B6973AF96" name="Post"/>
+			</field_ref>
+		</related_field>
+		<related_field kind="destination">
+			<field_ref uuid="81C73A106D6949C5A6E5A1D58A33F8A9" name="Id">
+				<table_ref uuid="D2360EBBF10645FB9D96427AE0BD60E9" name="Room"/>
+			</field_ref>
+		</related_field>
+		<relation_extra entry_wildchar="false" entry_create="false" choice_field="0" entry_autofill="false">
+			<editor_relation_info via_point_x="-1" via_point_y="-1" prefers_left="true" smartlink="true">
+				<color red="168" green="206" blue="226" alpha="255"/>
+			</editor_relation_info>
+		</relation_extra>
+	</relation>
+	<relation uuid="A0DDFC9F9C7B4BF69FEEC80CEC40F14A" name_Nto1="user" name_1toN="posts" auto_load_Nto1="false" auto_load_1toN="false" foreign_key="false" state="1">
+		<related_field kind="source">
+			<field_ref uuid="DF9B824246E540238DCD604885A778FD" name="userId">
+				<table_ref uuid="4211AC185459406796059B0B6973AF96" name="Post"/>
+			</field_ref>
+		</related_field>
+		<related_field kind="destination">
+			<field_ref uuid="3BC8BF81C38F409CBFECCCA0696DE65B" name="Id">
+				<table_ref uuid="AF567ED3B6E542289D4007269E440DB2" name="User"/>
+			</field_ref>
+		</related_field>
+		<relation_extra entry_wildchar="false" entry_create="false" choice_field="0" entry_autofill="false">
+			<editor_relation_info via_point_x="-1" via_point_y="-1" prefers_left="false" smartlink="true">
+				<color red="237" green="211" blue="181" alpha="255"/>
+			</editor_relation_info>
+		</relation_extra>
+	</relation>
+	<relation uuid="267BD76F2BCB47778207D01C7F85FC64" name_Nto1="room" name_1toN="access" auto_load_Nto1="false" auto_load_1toN="false" foreign_key="false" state="1">
+		<related_field kind="source">
+			<field_ref uuid="FEF9C5478B914631BA2C298BDA2E57A4" name="roomId">
+				<table_ref uuid="969E39E776A04A1DBC82CB4957F68583" name="Access"/>
+			</field_ref>
+		</related_field>
+		<related_field kind="destination">
+			<field_ref uuid="81C73A106D6949C5A6E5A1D58A33F8A9" name="Id">
+				<table_ref uuid="D2360EBBF10645FB9D96427AE0BD60E9" name="Room"/>
+			</field_ref>
+		</related_field>
+		<relation_extra entry_wildchar="false" entry_create="false" choice_field="0" entry_autofill="false">
+			<editor_relation_info via_point_x="-1" via_point_y="-1" prefers_left="false" smartlink="true">
+				<color red="168" green="206" blue="226" alpha="255"/>
+			</editor_relation_info>
+		</relation_extra>
+	</relation>
+	<relation uuid="0827ABEBE620484F8E1779FF380A6302" name_Nto1="user" name_1toN="access" auto_load_Nto1="false" auto_load_1toN="false" foreign_key="false" state="1">
+		<related_field kind="source">
+			<field_ref uuid="FED749E74C474661BB8571F1F20622C3" name="userId">
+				<table_ref uuid="969E39E776A04A1DBC82CB4957F68583" name="Access"/>
+			</field_ref>
+		</related_field>
+		<related_field kind="destination">
+			<field_ref uuid="3BC8BF81C38F409CBFECCCA0696DE65B" name="Id">
+				<table_ref uuid="AF567ED3B6E542289D4007269E440DB2" name="User"/>
+			</field_ref>
+		</related_field>
+		<relation_extra entry_wildchar="false" entry_create="false" choice_field="0" entry_autofill="false">
+			<editor_relation_info via_point_x="-1" via_point_y="-1" prefers_left="false" smartlink="true">
+				<color red="237" green="211" blue="181" alpha="255"/>
+			</editor_relation_info>
+		</relation_extra>
+	</relation>
+	<index kind="regular" unique_keys="true" uuid="107A4DAD48954EDE998E0BEDEE1088C1" type="7">
+		<field_ref uuid="81C73A106D6949C5A6E5A1D58A33F8A9" name="Id">
+			<table_ref uuid="D2360EBBF10645FB9D96427AE0BD60E9" name="Room"/>
+		</field_ref>
+	</index>
+	<index kind="regular" uuid="10CD6A12A1D44AD683AB1D3A32E93907" type="3">
+		<field_ref uuid="3DF2DF2CD9FC4137AC25E6A980A4B7A6" name="timestamp">
+			<table_ref uuid="4211AC185459406796059B0B6973AF96" name="Post"/>
+		</field_ref>
+	</index>
+	<index kind="regular" unique_keys="true" uuid="2824282330D5412B99671D68C8F179D7" type="7">
+		<field_ref uuid="C21B2C6ABCE440FCB51814A343973B5A" name="Id">
+			<table_ref uuid="4211AC185459406796059B0B6973AF96" name="Post"/>
+		</field_ref>
+	</index>
+	<index kind="regular" unique_keys="true" uuid="486B2E88395E4569AEC6643F3E84AF10" type="7">
+		<field_ref uuid="3BC8BF81C38F409CBFECCCA0696DE65B" name="Id">
+			<table_ref uuid="AF567ED3B6E542289D4007269E440DB2" name="User"/>
+		</field_ref>
+	</index>
+	<index kind="regular" uuid="494243351767420490407E20368086CF" type="3">
+		<field_ref uuid="FEF9C5478B914631BA2C298BDA2E57A4" name="roomId">
+			<table_ref uuid="969E39E776A04A1DBC82CB4957F68583" name="Access"/>
+		</field_ref>
+	</index>
+	<index kind="regular" uuid="5F4C956C6F334909AF179859E72AC977" type="3">
+		<field_ref uuid="B74E239B261D4C6B9B85A2D70E1752C3" name="kind">
+			<table_ref uuid="969E39E776A04A1DBC82CB4957F68583" name="Access"/>
+		</field_ref>
+	</index>
+	<index kind="regular" uuid="6563D9A5306B47BFB79F309C63441FB9" type="1">
+		<field_ref uuid="FED749E74C474661BB8571F1F20622C3" name="userId">
+			<table_ref uuid="969E39E776A04A1DBC82CB4957F68583" name="Access"/>
+		</field_ref>
+	</index>
+	<index kind="regular" unique_keys="true" uuid="AC940D55659D43AB8CE3C6AEC9AC581E" type="7">
+		<field_ref uuid="E48E74866B514CACBE0E32B1BA4C73FD" name="Id">
+			<table_ref uuid="969E39E776A04A1DBC82CB4957F68583" name="Access"/>
+		</field_ref>
+	</index>
+	<index kind="regular" uuid="BE312D7D67EB4BFC8931FC65F8FDADB2" type="3">
+		<field_ref uuid="45629E8A02684F85B4E10D9E8DB1F10F" name="timestamp">
+			<table_ref uuid="969E39E776A04A1DBC82CB4957F68583" name="Access"/>
+		</field_ref>
+	</index>
+	<index kind="regular" uuid="BF210B15F9DA4E1EA810EFE3CFAC9CA7" type="3">
+		<field_ref uuid="329C25B8C9AD42A186C1BBAECF70E085" name="roomId">
+			<table_ref uuid="4211AC185459406796059B0B6973AF96" name="Post"/>
+		</field_ref>
+	</index>
+	<index kind="regular" uuid="D528D8B5DC5642A7A8BC803EA55C8E78" type="3">
+		<field_ref uuid="DF9B824246E540238DCD604885A778FD" name="userId">
+			<table_ref uuid="4211AC185459406796059B0B6973AF96" name="Post"/>
+		</field_ref>
+	</index>
+	<index kind="regular" uuid="DAA3B9A0C1D24865AC6112FD458FBE79" type="1">
+		<field_ref uuid="28228A6910FF4C0DAD6ECE1F86041FD2" name="remoteAddress">
+			<table_ref uuid="AF567ED3B6E542289D4007269E440DB2" name="User"/>
+		</field_ref>
+	</index>
+	<base_extra>
+		<journal_file journal_file_enabled="true"/>
+	</base_extra>
+</base>

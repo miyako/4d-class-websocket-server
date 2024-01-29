@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.ico" type="image/vnd.microsoft.icon"/>
+  <link rel="stylesheet" href="chat.css">
+  <title>&nbsp;</title>
+</head>
+<body>
+  <!--#4dcode 
+    ARRAY TEXT($names; 0)
+    ARRAY TEXT($values; 0)
+    WEB GET HTTP HEADER($names; $values)
+    var $room : Text
+    var $i : Integer
+    $i:=Find in array($names; "X-URL")
+    If ($i#-1)
+      var $url : Text
+      $url:=$values{$i}
+      ARRAY LONGINT($pos; 0)
+      ARRAY LONGINT($len; 0)
+      If (Match regex("\\?room=(\\d+)"; $url; 1; $pos; $len))
+        $room:=Substring($url; $pos{1}; $len{1})
+      End if 
+    End if 
+    var $posts : cs.PostSelection
+    $posts:=ds.Room.recents($room)
+  -->  
+  <div class="chat-container">
+    <div class="messages-container" id="messages">
+    <!--#4deach $post in $posts--> 
+    <div class="message-container">
+      <div class="message-identity"><!--#4dtext $post.user.remoteAddress--></div>
+      <div class="message-bubble">
+        <!--#4dtext $post.message-->
+      </div>
+    </div>
+    <!--#4dendeach-->   
+    </div>
+    <div class="message-input-container">
+      <input type="text" id="messageInput" placeholder="ここにメッセージを入力してください...">
+      <button id="sendButton">Send</button>
+    </div>
+  </div>
+  <script>
+    (function(){
+      const messagesDiv = document.getElementById('messages');
+      const messageInput = document.getElementById('messageInput');
+      const sendButton = document.getElementById('sendButton');
+      
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const roomNumber = urlParams.get('room');
+      const room = roomNumber ? roomNumber : 1;
+      const urlwss="ws://127.0.0.1/chat?room="+room;
+      let ws;
+           
+      function displayMessage(message, isSender = false) {
+        const data = JSON.parse(message);
+        const messageContainer = document.createElement('div');
+        const messageElement = document.createElement('div');
+        messageElement.innerText += data.message;
+        
+        messageContainer.classList.add('message-container');
+        
+        if (isSender) {
+          messageContainer.classList.add('sender-message-container');
+          messageElement.classList.add('message-bubble', 'sender-message-bubble');
+        } else {
+          if(!!data.isAdmin){
+            messageElement.classList.add('message-bubble', 'admin-message-bubble');  
+          } else {
+            const messageIdentity = document.createElement('div');
+            messageIdentity.classList.add('message-identity');
+            messageIdentity.innerText += data.remoteAddress;
+            messageContainer.appendChild(messageIdentity);
+            messageElement.classList.add('message-bubble');
+          }
+        }
+        
+        messageContainer.appendChild(messageElement);
+        messagesDiv.appendChild(messageContainer);
+        
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+      }
+      
+      function init(){
+        document.title = "room " + room;
+        if (ws){
+          ws.close();
+        }
+        ws = new WebSocket(urlwss);
+        ws.addEventListener('message', (event) => {
+          const message = event.data;
+          displayMessage(message);
+        });
+        ws.addEventListener('close',function close(){
+          ws=null;
+        });
+        sendButton.addEventListener('click', () => {
+          if (!ws){
+            displayMessage("<p style='color:red'>Error: WebSocket接続がありません!</p>");
+            return;
+          }   
+          const message = messageInput.value;
+          if(message != ''){
+            ws.send(message);
+            displayMessage(JSON.stringify({message:message}), true);
+            messageInput.value = '';
+          }
+        });
+      }
+      
+      init();
+          
+    })();  
+    </script>
+  </body>
+</html>    

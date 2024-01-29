@@ -1,0 +1,8 @@
+{
+	"forms": {
+		"Chat": {
+			"timeStamp": "2023-11-24T03:05:05Z",
+			"destination": "detailScreen"
+		}
+	}
+}
