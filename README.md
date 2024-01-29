@@ -7,3 +7,7 @@
 Classes to implement a chat application based on WebSockets
 
 ![スクリーンショット 2024-01-29 9 46 55](https://github.com/miyako/4d-class-websocket-server/assets/1725068/ea646374-32df-4ad2-b78a-1f259775929a)
+
+## Acknowledgements
+
+HTML, CSS, JS from [ashish-makes/chat-app](https://github.com/ashish-makes/chat-app)
