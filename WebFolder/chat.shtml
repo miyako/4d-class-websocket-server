@@ -12,8 +12,12 @@
     ARRAY TEXT($names; 0)
     ARRAY TEXT($values; 0)
     WEB GET HTTP HEADER($names; $values)
-    var $room : Text
+    var $room; $host : Text
     var $i : Integer
+    $i:=Find in array($names; "Host")
+    If ($i#-1)
+        $host:=$values{$i}
+    End if
     $i:=Find in array($names; "X-URL")
     If ($i#-1)
       var $url : Text
@@ -53,7 +57,7 @@
       const urlParams = new URLSearchParams(queryString);
       const roomNumber = urlParams.get('room');
       const room = roomNumber ? roomNumber : 1;
-      const urlwss="ws://127.0.0.1/chat?room="+room;
+      const urlwss="ws://$4DHTML($host)/chat?room="+room;
       let ws;
            
       function displayMessage(message, isSender = false) {
