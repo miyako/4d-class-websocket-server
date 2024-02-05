@@ -30,9 +30,11 @@ Class constructor($path; $controller : 4D:C1709.Class)
 					//MARK:再起的な参照によりオブジェクトを延命する
 					This:C1470.controller.instance:=This:C1470
 					
+					$dataType:=["text"; "blob"; "object"].indexOf($dataType)#-1 ? $dataType : "text"
+					
 					var $socket : 4D:C1709.WebSocketServer
 					
-					$socket:=4D:C1709.WebSocketServer.new(This:C1470.controller; {path: $path})
+					$socket:=4D:C1709.WebSocketServer.new(This:C1470.controller; {path: $path; dataType: $dataType})
 					
 					If ($socket#Null:C1517)
 						
