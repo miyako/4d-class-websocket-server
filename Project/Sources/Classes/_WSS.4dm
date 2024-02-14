@@ -1,7 +1,7 @@
 property socket : 4D:C1709.WebSocketServer
 property controller : cs:C1710._WSS_Controller
 
-Class constructor($path; $controller : 4D:C1709.Class)
+Class constructor($path; $controller : 4D:C1709.Class; $dataType : Text)
 	
 	var __WebSocketServer__ : Object
 	
