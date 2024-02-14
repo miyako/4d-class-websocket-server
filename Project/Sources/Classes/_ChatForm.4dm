@@ -11,10 +11,8 @@ Function onLoad()
 	
 	If (Not:C34(cs:C1710._WSS.new().isRunning("/chat")))
 		
-		//MARK:Formのコンテキストでインスタンス化＝Formのコンテキストでコールバック実行）
 		Form:C1466.Chat:=cs:C1710.Chat.new(cs:C1710.ChatUI_WSS_Controller)
 		
-		//MARK:オブジェクト型タブコントロール
 		Form:C1466.pages:={}
 		Form:C1466.pages.values:=["入退室"; "チャット"; "デバッグ"]
 		Form:C1466.pages.index:=0
@@ -26,7 +24,6 @@ Function onLoad()
 		Form:C1466.update()
 		
 	Else 
-		//同じパスですでにワーカーがWebSocketServerを起動している
 		Form:C1466.deactivate()
 	End if 
 	
@@ -36,7 +33,6 @@ Function onUnload()
 	
 Function onPageChange()
 	
-	//ハイライトを保持するために
 	GOTO OBJECT:C206(*; "rooms")
 	
 	//MARK:-
@@ -91,8 +87,6 @@ Function displayRoom()
 	Else 
 		OPEN URL:C673("http://127.0.0.1/chat.shtml?room="+ds:C1482.Room.next())
 	End if 
-	
-	//MARK:-エンティティをリロード＝フォーム上に表示されたリレーション属性を再クエリ
 	
 Function onOpen($socket : 4D:C1709.WebSocketConnection; $open : cs:C1710._Open)
 	

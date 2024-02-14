@@ -3,7 +3,6 @@ property controller : cs:C1710._WSS_Controller
 
 Class constructor($path; $controller : 4D:C1709.Class)
 	
-	//管理用オブジェクト
 	var __WebSocketServer__ : Object
 	
 	If (__WebSocketServer__=Null:C1517)
@@ -22,12 +21,10 @@ Class constructor($path; $controller : 4D:C1709.Class)
 				
 				$semaphore:=This:C1470.semaphore($path)
 				
-				//MARK:同じpathでハンドラーを作成すると重複エラー-10718
 				If (Not:C34(Test semaphore:C652($semaphore)))
 					
 					This:C1470.controller:=$controller.new()
 					
-					//MARK:再起的な参照によりオブジェクトを延命する
 					This:C1470.controller.instance:=This:C1470
 					
 					$dataType:=["text"; "blob"; "object"].indexOf($dataType)#-1 ? $dataType : "text"
@@ -59,8 +56,6 @@ Function isRunning($path : Text)
 	
 Function requestTerminate($path : Text)
 	
-	//ハンドラーのアンインストールは非同期処理
-	
 	var $workers : Collection
 	
 	$workers:=Get process activity:C1495(Processes only:K5:35).processes.query("type in :1"; [Main process:K36:10; Worker process:K36:32])
@@ -82,14 +77,13 @@ Function _abort($function : 4D:C1709.Function; $path : Text)
 		$socket:=__WebSocketServer__[$path]
 		
 		If ($socket#Null:C1517)
-			$socket.terminate()  //つぎのイベントサイクルでonTerminate()が実行される
+			$socket.terminate()
 		End if 
 		
 	End if 
 	
 Function close($socket : 4D:C1709.WebSocketServer)
 	
-	//MARK:重複エラー-10718を回避するためのsemaphoreをクリア
 	$semaphore:=This:C1470.semaphore($socket.path)
 	
 	If (Test semaphore:C652($semaphore))
@@ -100,7 +94,6 @@ Function close($socket : 4D:C1709.WebSocketServer)
 	
 Function open($socket : 4D:C1709.WebSocketServer)->$semahore : Boolean
 	
-	//MARK:重複エラー-10718を回避するためのsemaphoreをセット
 	$semahore:=Semaphore:C143(This:C1470.semaphore($socket.path))
 	
 	var __WebSocketServer__ : Object
@@ -121,7 +114,6 @@ Function terminate()
 	$socket:=This:C1470.socket
 	
 	If ($socket#Null:C1517)
-		//MARK:クライアント接続を切断する
 		If (Not:C34($socket.terminated))
 			$socket.terminate()
 		End if 
