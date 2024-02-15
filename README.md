@@ -6,7 +6,7 @@
 # 4d-class-websocket-server
 Classes to implement a chat application based on WebSockets.
 
-![](https://github.com/miyako/4d-class-websocket-server/assets/1725068/ea646374-32df-4ad2-b78a-1f259775929a)
+<img src="https://github.com/miyako/4d-class-websocket-server/assets/1725068/ea646374-32df-4ad2-b78a-1f259775929a" height="270" />
 
 ## Acknowledgements
 
